@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
-    /* Reset total para visualización de un solo pantallazo */
+    /* Reset total y bloqueo de scroll para pantalla única */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -26,14 +26,14 @@
       height: 100%;
       height: 100dvh;
       overflow: hidden;
-      background-color: #0f172a;
+      background-color: #0b1329;
       display: flex;
       justify-content: center;
       align-items: center;
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-    /* Contenedor adaptativo: encaja siempre completo en el monitor o móvil sin scroll */
+    /* Contenedor Adaptativo de Pantalla Única: Relación estricta 900x1700 */
     .viewport-wrapper {
       position: relative;
       height: 100dvh;
@@ -43,7 +43,7 @@
       aspect-ratio: 900 / 1700;
       background: #FFFFFF url('index.jfif') no-repeat center center;
       background-size: 100% 100%;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
       overflow: hidden;
     }
 
@@ -52,14 +52,14 @@
        ======================================================== */
     .video-frame-container {
       position: absolute;
-      top: 18.5%;
-      left: 10%;
-      width: 80%;
-      height: 23%; /* Mayor altura hacia abajo */
-      border-radius: 14px;
+      top: 18.2%;
+      left: 8%;
+      width: 84%;
+      height: 25.5%; /* Mayor altura hacia abajo para mayor presencia */
+      border-radius: 16px;
       overflow: hidden;
-      background-color: #0b1a24;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22), 0 0 0 3px #FFFFFF;
+      background-color: #0f172a;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25), 0 0 0 3px #FFFFFF;
       z-index: 5;
     }
 
@@ -77,12 +77,12 @@
 
     .frame-slide.active {
       opacity: 1;
-      animation: kenBurnsEffect 6s infinite alternate ease-in-out;
+      animation: kenBurnsMotion 6.5s infinite alternate ease-in-out;
     }
 
-    @keyframes kenBurnsEffect {
+    @keyframes kenBurnsMotion {
       0% { transform: scale(1) translate(0, 0); }
-      100% { transform: scale(1.08) translate(-1.5%, -1.5%); }
+      100% { transform: scale(1.1) translate(-2%, -2%); }
     }
 
     /* Brillo de lente */
@@ -90,21 +90,21 @@
       content: '';
       position: absolute;
       inset: 0;
-      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.35);
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4);
       pointer-events: none;
     }
 
     /* ========================================================
-       2. BOTONERA MODULAR FLOTANTE
+       2. BOTONERA MODULAR CON CURSORES DE MANO
        ======================================================== */
     .interactive-menu {
       position: absolute;
-      top: 46%;
+      top: 48.5%;
       left: 8%;
       width: 84%;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 18px;
       z-index: 10;
     }
 
@@ -112,19 +112,19 @@
       position: relative;
       display: flex;
       align-items: center;
-      padding: 14px 18px;
+      padding: 15px 18px;
       background: #FFFFFF;
-      border-radius: 18px;
+      border-radius: 20px;
       text-decoration: none;
       border: 2px solid #E2E8F0;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08), 0 4px 0 #CBD5E1;
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08), 0 4px 0 #CBD5E1;
       transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
       cursor: pointer;
     }
 
     .action-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12), 0 4px 0 #94A3B8;
+      box-shadow: 0 14px 26px rgba(15, 23, 42, 0.12), 0 4px 0 #94A3B8;
     }
 
     .action-btn:active {
@@ -200,14 +200,14 @@
     }
 
     /* ========================================================
-       3. FOOTER FIJO REGLAMENTARIO DE UBICACIÓN
+       3. FOOTER FIJO REGLAMENTARIO DE UBICACIÓN (SEDE VIRTUAL)
        ======================================================== */
     .fixed-footer {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 80px;
+      height: 84px;
       background: linear-gradient(135deg, #0F766E 0%, #0D9488 100%);
       display: flex;
       align-items: center;
@@ -253,7 +253,7 @@
     }
 
     /* ========================================================
-       4. MODAL CONÓCENOS + NARRADOR DE VOZ
+       4. MODAL CONÓCENOS + VOZ EN OFF
        ======================================================== */
     .modal-overlay {
       position: absolute;
@@ -308,16 +308,16 @@
     }
 
     .modal-icon-badge {
-      width: 62px;
-      height: 62px;
+      width: 60px;
+      height: 60px;
       background: linear-gradient(135deg, #0ea5e9, #0284c7);
       color: #FFFFFF;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
-      margin: 0 auto 14px;
+      font-size: 26px;
+      margin: 0 auto 12px;
       box-shadow: 0 6px 16px rgba(14, 165, 233, 0.3);
     }
 
@@ -326,14 +326,14 @@
       font-size: 18px;
       font-weight: 800;
       color: #0F172A;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .modal-card p {
       font-size: 13.5px;
       color: #475569;
       line-height: 1.55;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       text-align: left;
     }
 
@@ -357,13 +357,13 @@
 </head>
 <body>
 
-  <!-- Lienzo Móvil 900x1700 Autocontenido -->
+  <!-- Lienzo Móvil 900x1700 Single-Viewport -->
   <main class="viewport-wrapper">
 
-    <!-- Fotograma con mayor altura hacia abajo -->
+    <!-- Fotograma Dinámico de Mayor Altura -->
     <div class="video-frame-container" id="videoFrame"></div>
 
-    <!-- Botonera central -->
+    <!-- Botonera Interactiva -->
     <nav class="interactive-menu" aria-label="Menú principal ASETUR">
       
       <!-- Botón Conócenos -->
@@ -396,7 +396,7 @@
 
     </nav>
 
-    <!-- Footer fijo de ubicación (Sede Digital) -->
+    <!-- Footer Fijo de Ubicación Virtual -->
     <footer class="fixed-footer">
       <div class="footer-pin">
         <i class="fa-solid fa-location-dot"></i>
@@ -407,7 +407,7 @@
       </div>
     </footer>
 
-    <!-- Modal con voz en off -->
+    <!-- Modal con síntesis de voz -->
     <div class="modal-overlay" id="modalOverlay">
       <div class="modal-card">
         <button class="close-modal-btn" id="btnCloseModal" type="button" aria-label="Cerrar modal">
@@ -434,40 +434,50 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       
-      /* --- Sistema auto-expansible de imágenes chile-01.jpg, chile-02.jpg... --- */
+      /* --- DETECCIÓN POLIMÓRFICA MULTI-FORMATO (.jfif, .jpg, .png, .gif, .webp) --- */
       const videoFrame = document.getElementById('videoFrame');
       const loadedSlides = [];
       let currentIndex = 0;
+      const extensions = ['jfif', 'jpg', 'jpeg', 'png', 'webp', 'gif'];
 
-      const fallbackImages = [
-        'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80'
-      ];
-
-      function probeImage(index) {
+      // Probar si un archivo existe probando sus extensiones
+      function tryLoadFormat(baseName, extIndex = 0) {
+        if (extIndex >= extensions.length) return Promise.resolve(null);
+        
         return new Promise((resolve) => {
-          const num = String(index).padStart(2, '0');
-          const testUrl = `chile-${num}.jpg`;
+          const testUrl = `${baseName}.${extensions[extIndex]}`;
           const img = new Image();
           img.onload = () => resolve(testUrl);
-          img.onerror = () => resolve(null);
+          img.onerror = () => {
+            // Intenta con la siguiente extensión de la lista
+            resolve(tryLoadFormat(baseName, extIndex + 1));
+          };
           img.src = testUrl;
         });
       }
 
       async function initializeSlideshow() {
         const foundUrls = [];
+
+        // Barre desde chile-01 hasta chile-30 automáticamente
         for (let i = 1; i <= 30; i++) {
-          const validUrl = await probeImage(i);
+          const num = String(i).padStart(2, '0');
+          const validUrl = await tryLoadFormat(`chile-${num}`);
+          
           if (validUrl) {
             foundUrls.push(validUrl);
-          } else if (i > 3 && foundUrls.length > 0) {
+          } else if (i > 6 && foundUrls.length > 0) {
+            // Si ya pasó de las 6 que tienes y no encuentra más, corta para optimizar
             break;
           }
         }
 
-        const finalImages = foundUrls.length > 0 ? foundUrls : fallbackImages;
+        // Si por alguna razón ninguna carga, usa imágenes de respaldo
+        const finalImages = foundUrls.length > 0 ? foundUrls : [
+          'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80'
+        ];
+
         videoFrame.innerHTML = '';
         finalImages.forEach((src, idx) => {
           const slide = document.createElement('div');
@@ -491,7 +501,7 @@
 
       initializeSlideshow();
 
-      /* --- Modal y Síntesis de Voz --- */
+      /* --- MODAL Y SÍNTESIS DE VOZ --- */
       const btnConocenos = document.getElementById('btnConocenos');
       const modalOverlay = document.getElementById('modalOverlay');
       const btnCloseModal = document.getElementById('btnCloseModal');
