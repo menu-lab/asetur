@@ -2,17 +2,17 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>ASETUR Chile - Menú Interactivo</title>
   
-  <!-- Tipografía moderna e iconos -->
+  <!-- Tipografías e Iconos -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
-    /* Reset estructural */
+    /* Reset total para visualización de un solo pantallazo */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -21,52 +21,46 @@
       user-select: none;
     }
 
-    body {
-      background-color: #e5e9f0;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      min-height: 100vh;
+    html, body {
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      overflow: hidden;
+      background-color: #0f172a;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow-x: hidden;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-    /* Contenedor estricto Proporción 900x1700 */
-    .mobile-screen {
+    /* Contenedor adaptativo: encaja siempre completo en el monitor o móvil sin scroll */
+    .viewport-wrapper {
       position: relative;
-      width: 100%;
-      max-width: 476px; /* Escalado visual responsivo manteniendo relación 900x1700 */
+      height: 100dvh;
+      width: calc(100dvh * (900 / 1700));
+      max-width: 100vw;
+      max-height: calc(100vw * (1700 / 900));
       aspect-ratio: 900 / 1700;
-      /* Fondo de trabajo: tu imagen limpia index.jfif */
-      background: #FFFFFF url('index.jfif') no-repeat center top;
+      background: #FFFFFF url('index.jfif') no-repeat center center;
       background-size: 100% 100%;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Fallback en caso de que la imagen se llame index.jpg */
-    @supports not (background: url('index.jfif')) {
-      .mobile-screen {
-        background-image: url('index.jpg');
-      }
     }
 
     /* ========================================================
-       1. FOTOGRAMA DINÁMICO EN EL MARCO SUPERIOR
-       Coordenadas milimétricas calibradas sobre el marco de la imagen
+       1. FOTOGRAMA AMPLIADO HACIA ABAJO (EFECTO VIDEO CINEMATOGRÁFICO)
        ======================================================== */
     .video-frame-container {
       position: absolute;
-      top: 19.5%;   /* Alineado sobre el marco interior */
-      left: 18.5%;
-      width: 63%;
-      height: 14.8%;
+      top: 18.5%;
+      left: 10%;
+      width: 80%;
+      height: 23%; /* Mayor altura hacia abajo */
+      border-radius: 14px;
       overflow: hidden;
-      border-radius: 4px;
-      z-index: 5;
       background-color: #0b1a24;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22), 0 0 0 3px #FFFFFF;
+      z-index: 5;
     }
 
     .frame-slide {
@@ -81,109 +75,93 @@
       transform: scale(1);
     }
 
-    /* Animación de paneo/zoom continuo estilo video cinematográfico */
     .frame-slide.active {
       opacity: 1;
-      animation: kenBurns 6s infinite alternate ease-in-out;
+      animation: kenBurnsEffect 6s infinite alternate ease-in-out;
     }
 
-    @keyframes kenBurns {
+    @keyframes kenBurnsEffect {
       0% { transform: scale(1) translate(0, 0); }
-      100% { transform: scale(1.1) translate(-2%, -2%); }
+      100% { transform: scale(1.08) translate(-1.5%, -1.5%); }
     }
 
-    /* Overlay brillante sutil tipo lente de cámara */
+    /* Brillo de lente */
     .video-frame-container::after {
       content: '';
       position: absolute;
       inset: 0;
-      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.45);
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.35);
       pointer-events: none;
     }
 
     /* ========================================================
-       2. ZONA DE BOTONERA INTERACTIVA
-       Posicionada exactamente sobre el paño blanco libre
+       2. BOTONERA MODULAR FLOTANTE
        ======================================================== */
     .interactive-menu {
       position: absolute;
-      top: 48%;
-      left: 7.5%;
-      width: 85%;
+      top: 46%;
+      left: 8%;
+      width: 84%;
       display: flex;
       flex-direction: column;
-      gap: 22px;
+      gap: 16px;
       z-index: 10;
     }
 
-    /* Tarjetas de Botón 3D frontal con cursores */
     .action-btn {
       position: relative;
       display: flex;
       align-items: center;
-      padding: 16px 20px;
+      padding: 14px 18px;
       background: #FFFFFF;
-      border-radius: 20px;
+      border-radius: 18px;
       text-decoration: none;
       border: 2px solid #E2E8F0;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08), 
-                  0 4px 0 #CBD5E1;
-      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08), 0 4px 0 #CBD5E1;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
       cursor: pointer;
     }
 
     .action-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12), 
-                  0 4px 0 #94A3B8;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12), 0 4px 0 #94A3B8;
     }
 
     .action-btn:active {
       transform: translateY(2px);
-      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.1), 
-                  0 1px 0 #94A3B8;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08), 0 1px 0 #94A3B8;
     }
 
-    /* Icono 3D Circular izquierdo */
     .btn-icon-box {
-      width: 58px;
-      height: 58px;
-      min-width: 58px;
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
-      margin-right: 16px;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+      font-size: 24px;
+      margin-right: 14px;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.12);
       border: 2px solid #FFFFFF;
     }
 
-    /* Estilo Botón 1: Conócenos */
-    .btn-conocenos {
-      border-color: #BAE6FD;
-    }
+    /* Botón Conócenos */
+    .btn-conocenos { border-color: #BAE6FD; }
     .btn-conocenos .btn-icon-box {
       background: linear-gradient(135deg, #0ea5e9, #0284c7);
       color: #FFFFFF;
     }
-    .btn-conocenos .btn-title {
-      color: #0369A1;
-    }
+    .btn-conocenos .btn-title { color: #0369A1; }
 
-    /* Estilo Botón 2: LinkedIn */
-    .btn-linkedin {
-      border-color: #CBD5E1;
-    }
+    /* Botón LinkedIn */
+    .btn-linkedin { border-color: #CBD5E1; }
     .btn-linkedin .btn-icon-box {
       background: linear-gradient(135deg, #0a66c2, #004182);
       color: #FFFFFF;
     }
-    .btn-linkedin .btn-title {
-      color: #0A66C2;
-    }
+    .btn-linkedin .btn-title { color: #0A66C2; }
 
-    /* Textos del Botón */
     .btn-content {
       flex: 1;
       text-align: left;
@@ -191,67 +169,66 @@
 
     .btn-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 800;
-      letter-spacing: 0.5px;
-      line-height: 1.2;
       text-transform: uppercase;
+      line-height: 1.2;
     }
 
     .btn-subtitle {
-      font-size: 13px;
+      font-size: 12px;
       color: #64748B;
       font-weight: 600;
-      margin-top: 4px;
+      margin-top: 3px;
     }
 
-    /* Cursor de Mano Interactivo flotante */
+    /* Cursor de mano interactivo */
     .hand-pointer {
       position: absolute;
-      right: 14px;
-      bottom: -10px;
-      font-size: 28px;
+      right: 12px;
+      bottom: -8px;
+      font-size: 26px;
       color: #1e293b;
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+      filter: drop-shadow(0 3px 5px rgba(0,0,0,0.25));
       animation: handTap 2s infinite ease-in-out;
       pointer-events: none;
     }
 
     @keyframes handTap {
       0%, 100% { transform: translateY(0) rotate(-15deg); }
-      50% { transform: translateY(-6px) rotate(-5deg); }
+      50% { transform: translateY(-5px) rotate(-5deg); }
     }
 
     /* ========================================================
-       3. FOOTER FIJO REGLAMENTARIO (SEDE VIRTUAL)
+       3. FOOTER FIJO REGLAMENTARIO DE UBICACIÓN
        ======================================================== */
     .fixed-footer {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 90px;
+      height: 80px;
       background: linear-gradient(135deg, #0F766E 0%, #0D9488 100%);
       display: flex;
       align-items: center;
-      padding: 0 24px;
-      box-shadow: 0 -8px 20px rgba(15, 118, 110, 0.2);
+      padding: 0 20px;
+      box-shadow: 0 -6px 18px rgba(15, 118, 110, 0.25);
       z-index: 10;
       color: #FFFFFF;
     }
 
     .footer-pin {
-      width: 48px;
-      height: 48px;
-      min-width: 48px;
-      background: rgba(255, 255, 255, 0.18);
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      margin-right: 14px;
-      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      font-size: 22px;
+      margin-right: 12px;
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
       animation: pulsePin 2.5s infinite;
     }
 
@@ -264,31 +241,30 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 13px;
       font-weight: 800;
-      letter-spacing: 0.5px;
       text-transform: uppercase;
-      line-height: 1.2;
+      letter-spacing: 0.5px;
     }
 
     .footer-text p {
-      font-size: 11.5px;
-      opacity: 0.9;
-      font-weight: 500;
-      margin-top: 3px;
+      font-size: 11px;
+      opacity: 0.92;
+      font-weight: 600;
+      margin-top: 2px;
     }
 
     /* ========================================================
-       4. MODAL CONÓCENOS + VOZ EN OFF SINTETIZADA
+       4. MODAL CONÓCENOS + NARRADOR DE VOZ
        ======================================================== */
     .modal-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(6px);
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(5px);
       z-index: 100;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 20px;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
@@ -303,25 +279,22 @@
       position: relative;
       background: #FFFFFF;
       width: 100%;
-      border-radius: 28px;
-      padding: 30px 24px 26px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      border-radius: 24px;
+      padding: 26px 20px 22px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
       text-align: center;
       transform: scale(0.92);
       transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .modal-overlay.open .modal-card {
-      transform: scale(1);
-    }
+    .modal-overlay.open .modal-card { transform: scale(1); }
 
-    /* Botón Circular de Cierre (X) */
     .close-modal-btn {
       position: absolute;
-      top: -14px;
-      right: -14px;
-      width: 44px;
-      height: 44px;
+      top: -12px;
+      right: -12px;
+      width: 40px;
+      height: 40px;
       background: #EF4444;
       color: #FFFFFF;
       border: 3px solid #FFFFFF;
@@ -329,84 +302,71 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 16px;
       cursor: pointer;
-      box-shadow: 0 6px 14px rgba(239, 68, 68, 0.4);
-      transition: transform 0.2s;
-    }
-
-    .close-modal-btn:hover {
-      transform: scale(1.1) rotate(90deg);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
     }
 
     .modal-icon-badge {
-      width: 70px;
-      height: 70px;
+      width: 62px;
+      height: 62px;
       background: linear-gradient(135deg, #0ea5e9, #0284c7);
       color: #FFFFFF;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
-      margin: 0 auto 16px;
-      box-shadow: 0 8px 18px rgba(14, 165, 233, 0.35);
+      font-size: 28px;
+      margin: 0 auto 14px;
+      box-shadow: 0 6px 16px rgba(14, 165, 233, 0.3);
     }
 
     .modal-card h3 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 800;
       color: #0F172A;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .modal-card p {
-      font-size: 14.5px;
+      font-size: 13.5px;
       color: #475569;
-      line-height: 1.6;
-      margin-bottom: 20px;
+      line-height: 1.55;
+      margin-bottom: 18px;
       text-align: left;
     }
 
-    /* Botón Reproductor de Audio / Voz */
     .audio-play-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       width: 100%;
-      padding: 14px;
+      padding: 12px;
       background: #0F766E;
       color: #FFFFFF;
       border: none;
-      border-radius: 16px;
-      font-size: 15px;
+      border-radius: 14px;
+      font-size: 14px;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 6px 16px rgba(15, 118, 110, 0.3);
-      transition: background 0.2s;
-    }
-
-    .audio-play-btn:hover {
-      background: #0d9488;
+      box-shadow: 0 5px 14px rgba(15, 118, 110, 0.3);
     }
   </style>
 </head>
 <body>
 
-  <!-- Lienzo Móvil 900x1700 -->
-  <main class="mobile-screen">
+  <!-- Lienzo Móvil 900x1700 Autocontenido -->
+  <main class="viewport-wrapper">
 
-    <!-- 1. CONTENEDOR DEL FOTOGRAMA DINÁMICO (Efecto Video Continuo) -->
-    <div class="video-frame-container" id="videoFrame">
-      <!-- Los slides se insertan y expanden automáticamente con JavaScript -->
-    </div>
+    <!-- Fotograma con mayor altura hacia abajo -->
+    <div class="video-frame-container" id="videoFrame"></div>
 
-    <!-- 2. BOTONERA MODULAR SOBRE EL LIENZO BLANCO -->
-    <nav class="interactive-menu" aria-label="Menú principal de ASETUR Chile">
+    <!-- Botonera central -->
+    <nav class="interactive-menu" aria-label="Menú principal ASETUR">
       
-      <!-- Botón 1: Conócenos (Abre modal y narra en voz) -->
+      <!-- Botón Conócenos -->
       <button class="action-btn btn-conocenos" id="btnConocenos" type="button">
         <div class="btn-icon-box">
           <i class="fa-solid fa-compass"></i>
@@ -415,13 +375,12 @@
           <div class="btn-title">Conócenos</div>
           <div class="btn-subtitle">¿Qué es ASETUR Chile?</div>
         </div>
-        <!-- Cursor de mano interactivo -->
         <div class="hand-pointer">
           <i class="fa-solid fa-hand-pointer"></i>
         </div>
       </button>
 
-      <!-- Botón 2: LinkedIn Oficial -->
+      <!-- Botón LinkedIn -->
       <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="action-btn btn-linkedin">
         <div class="btn-icon-box">
           <i class="fa-brands fa-linkedin-in"></i>
@@ -430,7 +389,6 @@
           <div class="btn-title">LinkedIn</div>
           <div class="btn-subtitle">Red profesional y alianzas</div>
         </div>
-        <!-- Cursor de mano interactivo -->
         <div class="hand-pointer">
           <i class="fa-solid fa-hand-pointer"></i>
         </div>
@@ -438,7 +396,7 @@
 
     </nav>
 
-    <!-- 3. FOOTER FIJO REGLAMENTARIO DE UBICACIÓN (SEDE VIRTUAL) -->
+    <!-- Footer fijo de ubicación (Sede Digital) -->
     <footer class="fixed-footer">
       <div class="footer-pin">
         <i class="fa-solid fa-location-dot"></i>
@@ -449,11 +407,10 @@
       </div>
     </footer>
 
-    <!-- 4. MODAL INFORMATIVO CON VOZ EN OFF -->
+    <!-- Modal con voz en off -->
     <div class="modal-overlay" id="modalOverlay">
       <div class="modal-card">
-        <!-- Botón circular de cierre (X) -->
-        <button class="close-modal-btn" id="btnCloseModal" type="button" aria-label="Cerrar ventana">
+        <button class="close-modal-btn" id="btnCloseModal" type="button" aria-label="Cerrar modal">
           <i class="fa-solid fa-xmark"></i>
         </button>
 
@@ -465,7 +422,6 @@
           Somos una asociación de estudiantes de turismo de Chile que busca ayudar a impulsar las carreras y el desarrollo turístico de nuestro país. Unimos a estudiantes de norte a sur para construir el futuro del turismo sustentable, profesional y patrimonial.
         </p>
 
-        <!-- Botón para escuchar la reseña con voz natural -->
         <button class="audio-play-btn" id="btnPlayVoice" type="button">
           <i class="fa-solid fa-volume-high"></i>
           <span id="voiceBtnLabel">Escuchar Presentación</span>
@@ -475,57 +431,43 @@
 
   </main>
 
-  <!-- ========================================================
-       LÓGICA JAVASCRIPT: DETECCIÓN AUTO-EXPANSIBLE DE IMÁGENES
-       Y SÍNTESIS DE VOZ
-       ======================================================== -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       
-      /* --- A. SISTEMA DEL FOTOGRAMA (AUTO-EXPANSIÓN DE IMÁGENES) --- */
+      /* --- Sistema auto-expansible de imágenes chile-01.jpg, chile-02.jpg... --- */
       const videoFrame = document.getElementById('videoFrame');
       const loadedSlides = [];
       let currentIndex = 0;
-      let slideInterval = null;
 
-      // Imágenes de respaldo por si aún no has colocado chile-01.jpg en tu carpeta
       const fallbackImages = [
         'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80',
         'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
         'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80'
       ];
 
-      // Función que verifica si una imagen existe en tu carpeta local
       function probeImage(index) {
         return new Promise((resolve) => {
           const num = String(index).padStart(2, '0');
           const testUrl = `chile-${num}.jpg`;
           const img = new Image();
-          
           img.onload = () => resolve(testUrl);
           img.onerror = () => resolve(null);
           img.src = testUrl;
         });
       }
 
-      // Proceso de barrido: busca hasta 30 imágenes automáticamente
       async function initializeSlideshow() {
         const foundUrls = [];
-
         for (let i = 1; i <= 30; i++) {
           const validUrl = await probeImage(i);
           if (validUrl) {
             foundUrls.push(validUrl);
           } else if (i > 3 && foundUrls.length > 0) {
-            // Si ya encontró varias y empiezan a faltar, detiene la búsqueda
             break;
           }
         }
 
-        // Si no subiste ninguna aún, usa las imágenes de paisajes de prueba
         const finalImages = foundUrls.length > 0 ? foundUrls : fallbackImages;
-
-        // Construcción de los fotogramas en el DOM
         videoFrame.innerHTML = '';
         finalImages.forEach((src, idx) => {
           const slide = document.createElement('div');
@@ -535,9 +477,8 @@
           loadedSlides.push(slide);
         });
 
-        // Inicia el bucle de paneo continuo (cambio cada 4.5 segundos)
         if (loadedSlides.length > 1) {
-          slideInterval = setInterval(nextSlide, 4500);
+          setInterval(nextSlide, 4500);
         }
       }
 
@@ -550,7 +491,7 @@
 
       initializeSlideshow();
 
-      /* --- B. MODAL INTERACTIVO Y SÍNTESIS DE VOZ EN OFF --- */
+      /* --- Modal y Síntesis de Voz --- */
       const btnConocenos = document.getElementById('btnConocenos');
       const modalOverlay = document.getElementById('modalOverlay');
       const btnCloseModal = document.getElementById('btnCloseModal');
@@ -558,12 +499,8 @@
       const voiceBtnLabel = document.getElementById('voiceBtnLabel');
       const speechText = document.getElementById('speechText').innerText;
 
-      // Abrir Modal
-      btnConocenos.addEventListener('click', () => {
-        modalOverlay.classList.add('open');
-      });
+      btnConocenos.addEventListener('click', () => modalOverlay.classList.add('open'));
 
-      // Cerrar Modal y detener voz si está hablando
       function closeModal() {
         modalOverlay.classList.remove('open');
         if ('speechSynthesis' in window) {
@@ -577,13 +514,9 @@
         if (e.target === modalOverlay) closeModal();
       });
 
-      // Síntesis de voz nativa en español
       let isSpeaking = false;
       btnPlayVoice.addEventListener('click', () => {
-        if (!('speechSynthesis' in window)) {
-          alert('Tu navegador no soporta la función de voz en off.');
-          return;
-        }
+        if (!('speechSynthesis' in window)) return;
 
         if (window.speechSynthesis.speaking) {
           window.speechSynthesis.cancel();
@@ -593,9 +526,8 @@
         }
 
         const utterance = new SpeechSynthesisUtterance(speechText);
-        utterance.lang = 'es-CL'; // Español chileno o latinoamericano
-        utterance.rate = 0.95;    // Cadencia pausada y profesional
-        utterance.pitch = 1.0;
+        utterance.lang = 'es-CL';
+        utterance.rate = 0.95;
 
         utterance.onstart = () => {
           isSpeaking = true;
