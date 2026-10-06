@@ -104,16 +104,16 @@
     }
 
     /* ========================================================
-       2. BOTONERA MODULAR COMPACTA (ADELGAZADA)
+       2. BOTONERA DESPLAZADA HACIA ABAJO (ESPACIO SUPERIOR RESERVADO)
        ======================================================== */
     .interactive-menu {
       position: absolute;
-      top: 44.5%;
+      top: 54%; /* Desplazado hacia abajo para dejar el espacio del texto */
       left: 8%;
       width: 84%;
       display: flex;
       flex-direction: column;
-      gap: 9px; /* Separación compacta para dar aire abajo */
+      gap: 7px;
       z-index: 10;
     }
 
@@ -121,37 +121,37 @@
       position: relative;
       display: flex;
       align-items: center;
-      padding: 9px 14px; /* Botones más delgados */
+      padding: 7.5px 14px;
       background: #FFFFFF;
-      border-radius: 15px;
+      border-radius: 14px;
       text-decoration: none;
       border: 1.5px solid #E2E8F0;
-      box-shadow: 0 5px 12px rgba(15, 23, 42, 0.06), 0 2.5px 0 #CBD5E1;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06), 0 2px 0 #CBD5E1;
       transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s;
       cursor: pointer;
     }
 
     .action-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.1), 0 2.5px 0 #94A3B8;
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.1), 0 2px 0 #94A3B8;
     }
 
     .action-btn:active {
       transform: translateY(1.5px);
-      box-shadow: 0 2px 5px rgba(15, 23, 42, 0.08), 0 1px 0 #94A3B8;
+      box-shadow: 0 2px 4px rgba(15, 23, 42, 0.08), 0 1px 0 #94A3B8;
     }
 
     .btn-icon-box {
-      width: 40px;
-      height: 40px;
-      min-width: 40px;
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 16px;
       margin-right: 12px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.12);
       border: 1.5px solid #FFFFFF;
     }
 
@@ -194,25 +194,25 @@
 
     .btn-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 800;
       text-transform: uppercase;
       line-height: 1.15;
     }
 
     .btn-subtitle {
-      font-size: 10.5px;
+      font-size: 10px;
       color: #64748B;
       font-weight: 600;
-      margin-top: 1.5px;
+      margin-top: 1px;
     }
 
     /* Cursor de mano interactivo */
     .hand-pointer {
       position: absolute;
       right: 10px;
-      bottom: -6px;
-      font-size: 18px;
+      bottom: -5px;
+      font-size: 16px;
       color: #1e293b;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
       animation: handTap 2s infinite ease-in-out;
@@ -232,7 +232,7 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 58px; /* Adelgazado para optimizar el paño útil */
+      height: 52px;
       background: linear-gradient(135deg, #0F766E 0%, #0D9488 100%);
       display: flex;
       align-items: center;
@@ -243,15 +243,15 @@
     }
 
     .footer-pin {
-      width: 34px;
-      height: 34px;
-      min-width: 34px;
+      width: 30px;
+      height: 30px;
+      min-width: 30px;
       background: rgba(255, 255, 255, 0.2);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 15px;
       margin-right: 10px;
       border: 1px solid rgba(255, 255, 255, 0.4);
       animation: pulsePin 2.5s infinite;
@@ -264,7 +264,7 @@
 
     .footer-text h4 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -272,10 +272,10 @@
     }
 
     .footer-text p {
-      font-size: 9.5px;
+      font-size: 9px;
       opacity: 0.92;
       font-weight: 600;
-      margin-top: 1.5px;
+      margin-top: 1px;
     }
 
     /* ========================================================
@@ -319,8 +319,8 @@
       position: absolute;
       top: -10px;
       right: -10px;
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       background: #EF4444;
       color: #FFFFFF;
       border: 3px solid #FFFFFF;
@@ -334,15 +334,15 @@
     }
 
     .modal-icon-badge {
-      width: 52px;
-      height: 52px;
+      width: 48px;
+      height: 48px;
       background: linear-gradient(135deg, #0ea5e9, #0284c7);
       color: #FFFFFF;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      font-size: 20px;
       margin: 0 auto 10px;
       box-shadow: 0 5px 14px rgba(14, 165, 233, 0.3);
     }
@@ -386,10 +386,10 @@
   <!-- Lienzo Móvil 900x1700 Single-Viewport -->
   <main class="viewport-wrapper">
 
-    <!-- Fotograma Dinámico Sin Saltos -->
+    <!-- Fotograma Dinámico de Paisajes -->
     <div class="video-frame-container" id="videoFrame"></div>
 
-    <!-- Botonera Adelgazada (Los 4 Botones Completos y Visibles) -->
+    <!-- Botonera Desplazada Hacia Abajo -->
     <nav class="interactive-menu" aria-label="Menú interactivo ASETUR">
       
       <!-- 1. Botón Conócenos -->
@@ -434,7 +434,7 @@
         </div>
       </a>
 
-      <!-- 4. Botón Correo Electrónico Oficial (Visible y Holgado) -->
+      <!-- 4. Botón Correo Electrónico Oficial -->
       <a href="mailto:chileasetur@gmail.com" class="action-btn btn-email">
         <div class="btn-icon-box">
           <i class="fa-solid fa-envelope"></i>
@@ -450,7 +450,7 @@
 
     </nav>
 
-    <!-- Footer Fijo Adelgazado de Sede Virtual -->
+    <!-- Footer Fijo de Sede Digital -->
     <footer class="fixed-footer">
       <div class="footer-pin">
         <i class="fa-solid fa-location-dot"></i>
@@ -488,11 +488,11 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       
-      /* --- MOTOR MULTI-FORMATO Y BÚSQUEDA SECUENCIAL (.jfif, .jpg, .png, etc.) --- */
+      /* --- MOTOR MULTI-FORMATO CON SELECCIÓN ALEATORIA CONTINUA --- */
       const videoFrame = document.getElementById('videoFrame');
       const extensions = ['jfif', 'jpg', 'jpeg', 'png', 'webp', 'gif'];
       let slideElements = [];
-      let currentIndex = 0;
+      let currentIndex = -1;
 
       function tryLoadFormat(baseName, extIndex = 0) {
         if (extIndex >= extensions.length) return Promise.resolve(null);
@@ -505,23 +505,36 @@
         });
       }
 
+      // Algoritmo de mezcla aleatoria (Fisher-Yates)
+      function shuffleArray(array) {
+        const arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+
       async function initializeSlideshow() {
         const foundUrls = [];
 
-        for (let i = 1; i <= 30; i++) {
+        for (let i = 1; i <= 35; i++) {
           const num = String(i).padStart(2, '0');
           const validUrl = await tryLoadFormat(`chile-${num}`);
           if (validUrl) {
             foundUrls.push(validUrl);
-          } else if (i > 6 && foundUrls.length > 0) {
+          } else if (i > 10 && foundUrls.length > 0) {
             break;
           }
         }
 
-        const finalImages = foundUrls.length > 0 ? foundUrls : [
+        const rawImages = foundUrls.length > 0 ? foundUrls : [
           'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80',
           'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80'
         ];
+
+        // Se mezclan las imágenes para que el orden inicial sea aleatorio
+        const finalImages = shuffleArray(rawImages);
 
         videoFrame.innerHTML = '';
         slideElements = finalImages.map((src, idx) => {
@@ -532,16 +545,24 @@
           return slide;
         });
 
+        currentIndex = 0;
+
         if (slideElements.length > 1) {
-          setInterval(transitionSlide, 5000);
+          setInterval(transitionSlideRandom, 5000);
         }
       }
 
-      function transitionSlide() {
+      // Transición aleatoria continua sin repetir la foto inmediatamente anterior
+      function transitionSlideRandom() {
         if (slideElements.length <= 1) return;
+        
+        let nextIndex;
+        do {
+          nextIndex = Math.floor(Math.random() * slideElements.length);
+        } while (nextIndex === currentIndex);
+
         const currentSlide = slideElements[currentIndex];
-        currentIndex = (currentIndex + 1) % slideElements.length;
-        const nextSlide = slideElements[currentIndex];
+        const nextSlide = slideElements[nextIndex];
 
         nextSlide.classList.remove('is-leaving');
         nextSlide.classList.add('is-visible');
@@ -550,6 +571,8 @@
           currentSlide.classList.remove('is-visible');
           currentSlide.classList.add('is-leaving');
         }, 1800);
+
+        currentIndex = nextIndex;
       }
 
       initializeSlideshow();
